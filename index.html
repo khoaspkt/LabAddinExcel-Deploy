@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabAddinExcel - Cài đặt Add-in dự toán Excel</title>
+
+    <style>
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --text: #1f2937;
+            --muted: #6b7280;
+            --primary: #0f766e;
+            --primary-dark: #115e59;
+            --border: #e5e7eb;
+            --warning-bg: #fff7ed;
+            --warning-text: #9a3412;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #eef6ff, #f8fafc);
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 48px 20px;
+        }
+
+        .hero {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 42px;
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: #dff7f3;
+            color: #0f766e;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            margin: 0 0 14px;
+            font-size: 38px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--muted);
+            line-height: 1.65;
+            max-width: 760px;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: 0.15s ease;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            color: var(--text);
+            background: #f9fafb;
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #f3f4f6;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .info-card {
+            background: #f9fafb;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 18px;
+        }
+
+        .info-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .info-text {
+            color: var(--muted);
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .warning {
+            margin-top: 24px;
+            padding: 16px 18px;
+            border-radius: 12px;
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            line-height: 1.55;
+            border: 1px solid #fed7aa;
+        }
+
+        .steps {
+            margin-top: 32px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .steps h2 {
+            margin-top: 0;
+        }
+
+        ol {
+            padding-left: 22px;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 28px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 760px) {
+            .hero {
+                padding: 28px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <section class="hero">
+            <div class="badge">Excel VSTO Add-in</div>
+
+            <h1>LabAddinExcel</h1>
+
+            <p class="subtitle">
+                Công cụ hỗ trợ lập dự toán trên Excel: tra cứu công việc, chèn định mức,
+                phân tích đơn giá, cập nhật dữ liệu và đồng bộ bộ đơn giá.
+            </p>
+
+            <div class="buttons">
+                <a class="btn btn-primary" href="./setup.exe">
+                    Tải và cài đặt Add-in
+                </a>
+
+                <a class="btn btn-secondary" href="./LabAddinExcel.vsto">
+                    Mở file VSTO
+                </a>
+            </div>
+
+            <div class="warning">
+                Sau khi bấm cài đặt, trình duyệt có thể tải file <b>setup.exe</b> về máy.
+                Hãy mở file vừa tải để bắt đầu cài đặt. Nếu Windows hoặc trình duyệt hỏi xác nhận,
+                chọn tiếp tục nếu bạn tin tưởng nguồn cài đặt.
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-title">Cài đặt nhanh</div>
+                    <div class="info-text">
+                        Dùng file <code>setup.exe</code> để cài add-in vào Excel.
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Tự cập nhật</div>
+                    <div class="info-text">
+                        Add-in được publish bằng ClickOnce/VSTO, có thể cập nhật khi có bản mới.
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-title">Dữ liệu riêng</div>
+                    <div class="info-text">
+                        Dữ liệu định mức, đơn giá được cập nhật riêng bằng chức năng trong add-in.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="steps">
+            <h2>Hướng dẫn cài đặt</h2>
+
+            <ol>
+                <li>Bấm nút <b>Tải và cài đặt Add-in</b>.</li>
+                <li>Mở file <b>setup.exe</b> vừa tải về.</li>
+                <li>Làm theo hướng dẫn cài đặt trên màn hình.</li>
+                <li>Mở Microsoft Excel.</li>
+                <li>Kiểm tra tab <b>LAB</b> trên Ribbon Excel.</li>
+                <li>Nếu chưa có dữ liệu, bấm nút <b>Cập nhật dữ liệu</b> trong add-in.</li>
+            </ol>
+
+            <p>
+                Nếu máy báo thiếu thành phần cài đặt, hãy kiểm tra Microsoft Office,
+                .NET Framework và Visual Studio Tools for Office Runtime.
+            </p>
+        </section>
+
+        <footer>
+            © LabAddinExcel - Trang cài đặt nội bộ
+        </footer>
+    </main>
+</body>
+</html>
