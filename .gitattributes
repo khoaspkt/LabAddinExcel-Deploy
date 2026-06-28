@@ -1,0 +1,20 @@
+# Không cho Git tự đổi nội dung các file ClickOnce/VSTO
+*.application -text
+*.manifest -text
+*.vsto -text
+*.dll -text
+*.exe -text
+*.config -text
+*.deploy -text
+
+# File dữ liệu / template
+*.xlsx -text
+*.xltx -text
+*.zip -text
+
+# Web text bình thường
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.json text eol=lf
