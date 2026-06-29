@@ -1,267 +1,620 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LabAddinExcel - Cài đặt Add-in dự toán Excel</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Trang tải và hướng dẫn cài đặt LabAddinExcel cho Microsoft Excel." />
+    <title>LabAddinExcel | Tải và cài đặt Add-in Excel</title>
 
     <style>
         :root {
-            --bg: #f4f7fb;
+            --bg-main: #f5f7fb;
+            --bg-soft: #eef6ff;
             --card: #ffffff;
-            --text: #1f2937;
-            --muted: #6b7280;
+            --text: #182230;
+            --muted: #667085;
+            --subtle: #98a2b3;
             --primary: #0f766e;
             --primary-dark: #115e59;
-            --border: #e5e7eb;
+            --primary-soft: #ccfbf1;
+            --accent: #2563eb;
             --warning-bg: #fff7ed;
+            --warning-border: #fed7aa;
             --warning-text: #9a3412;
+            --success-bg: #ecfdf3;
+            --success-border: #bbf7d0;
+            --border: #e4e7ec;
+            --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
         }
 
         * {
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             font-family: "Segoe UI", Arial, sans-serif;
-            background: linear-gradient(135deg, #eef6ff, #f8fafc);
             color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(15, 118, 110, 0.14), transparent 34%),
+                radial-gradient(circle at top right, rgba(37, 99, 235, 0.12), transparent 30%),
+                linear-gradient(135deg, var(--bg-soft), var(--bg-main));
+            min-height: 100vh;
         }
 
-        .container {
-            max-width: 980px;
+        a {
+            color: inherit;
+        }
+
+        .page {
+            width: min(1120px, calc(100% - 36px));
             margin: 0 auto;
-            padding: 48px 20px;
+            padding: 28px 0 36px;
         }
 
-        .hero {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 42px;
-            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 7px 12px;
-            border-radius: 999px;
-            background: #dff7f3;
-            color: #0f766e;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 18px;
-        }
-
-        h1 {
-            margin: 0 0 14px;
-            font-size: 38px;
-            line-height: 1.2;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            color: var(--muted);
-            line-height: 1.65;
-            max-width: 760px;
-            margin-bottom: 30px;
-        }
-
-        .buttons {
+        .topbar {
             display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
             margin-bottom: 24px;
         }
 
-        .btn {
+        .brand {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            min-height: 48px;
-            padding: 0 22px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: 0.15s ease;
+            gap: 12px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
-        .btn-primary {
+        .brand-mark {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
             color: #ffffff;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 12px 28px rgba(15, 118, 110, 0.22);
+            font-size: 18px;
+        }
+
+        .top-note {
+            color: var(--muted);
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        .hero-card,
+        .download-card,
+        .section-card {
+            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid rgba(228, 231, 236, 0.9);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(12px);
+        }
+
+        .hero-card {
+            border-radius: var(--radius-lg);
+            padding: 46px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::after {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            right: -90px;
+            bottom: -110px;
+            border-radius: 999px;
+            background: rgba(15, 118, 110, 0.10);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 13px;
+            border-radius: 999px;
+            color: var(--primary-dark);
+            background: var(--primary-soft);
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
             background: var(--primary);
         }
 
-        .btn-primary:hover {
-            background: var(--primary-dark);
+        h1 {
+            margin: 0;
+            max-width: 760px;
+            font-size: clamp(34px, 6vw, 58px);
+            line-height: 1.05;
+            letter-spacing: -0.055em;
         }
 
-        .btn-secondary {
-            color: var(--text);
-            background: #f9fafb;
-            border: 1px solid var(--border);
+        .lead {
+            margin: 20px 0 0;
+            max-width: 720px;
+            font-size: 18px;
+            line-height: 1.75;
+            color: var(--muted);
         }
 
-        .btn-secondary:hover {
-            background: #f3f4f6;
+        .hero-actions {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
-        .info-grid {
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 58px;
+            padding: 0 28px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: #ffffff;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            font-weight: 800;
+            box-shadow: 0 18px 36px rgba(15, 118, 110, 0.27);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 22px 42px rgba(15, 118, 110, 0.34);
+            filter: brightness(1.02);
+        }
+
+        .btn-download:active {
+            transform: translateY(0);
+        }
+
+        .download-hint {
+            max-width: 290px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .mini-list {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 14px;
-            margin-top: 28px;
+            margin-top: 34px;
+            position: relative;
+            z-index: 1;
         }
 
-        .info-card {
-            background: #f9fafb;
+        .mini-item {
+            padding: 16px;
             border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 18px;
+            border-radius: 16px;
+            background: #ffffff;
         }
 
-        .info-title {
-            font-weight: 700;
+        .mini-title {
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .mini-text {
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .download-card {
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .status-box {
+            padding: 18px;
+            border-radius: 18px;
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+        }
+
+        .status-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 800;
+            color: #166534;
             margin-bottom: 8px;
         }
 
-        .info-text {
-            color: var(--muted);
-            line-height: 1.5;
+        .status-text {
+            color: #166534;
+            line-height: 1.55;
             font-size: 14px;
         }
 
-        .warning {
-            margin-top: 24px;
-            padding: 16px 18px;
-            border-radius: 12px;
-            background: var(--warning-bg);
-            color: var(--warning-text);
-            line-height: 1.55;
-            border: 1px solid #fed7aa;
+        .file-box {
+            border: 1px dashed #cbd5e1;
+            border-radius: 18px;
+            padding: 18px;
+            background: #f8fafc;
         }
 
-        .steps {
-            margin-top: 32px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 18px;
+        .file-label {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .file-name {
+            font-family: Consolas, "Courier New", monospace;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .requirements {
+            display: grid;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .req-row {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .req-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            color: var(--primary-dark);
+            background: var(--primary-soft);
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .section-card {
+            border-radius: var(--radius-lg);
             padding: 30px;
         }
 
-        .steps h2 {
-            margin-top: 0;
+        h2 {
+            margin: 0 0 18px;
+            font-size: 24px;
+            letter-spacing: -0.03em;
         }
 
-        ol {
-            padding-left: 22px;
-            line-height: 1.8;
+        .steps {
+            display: grid;
+            gap: 16px;
+            counter-reset: step;
         }
 
-        footer {
-            text-align: center;
-            margin-top: 28px;
+        .step {
+            display: grid;
+            grid-template-columns: 42px 1fr;
+            gap: 14px;
+            align-items: start;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: #ffffff;
+            background: var(--text);
+            font-weight: 900;
+        }
+
+        .step-title {
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .step-text {
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 15px;
+        }
+
+        .notice {
+            padding: 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--warning-border);
+            background: var(--warning-bg);
+            color: var(--warning-text);
+            line-height: 1.65;
+        }
+
+        .notice strong {
+            color: #7c2d12;
+        }
+
+        .support-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .support-item {
+            padding: 16px;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+        }
+
+        .support-title {
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .support-text {
+            color: var(--muted);
+            line-height: 1.55;
+            font-size: 14px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 26px;
             color: var(--muted);
             font-size: 14px;
         }
 
         code {
-            background: #f3f4f6;
             padding: 2px 6px;
-            border-radius: 6px;
+            border-radius: 7px;
+            background: #eef2f7;
+            color: #344054;
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 0.94em;
         }
 
-        @media (max-width: 760px) {
-            .hero {
-                padding: 28px;
-            }
-
-            h1 {
-                font-size: 30px;
-            }
-
-            .info-grid {
+        @media (max-width: 920px) {
+            .hero,
+            .content-grid {
                 grid-template-columns: 1fr;
             }
 
-            .btn {
+            .mini-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .page {
+                width: min(100% - 24px, 1120px);
+                padding-top: 18px;
+            }
+
+            .topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .top-note {
+                text-align: left;
+            }
+
+            .hero-card,
+            .download-card,
+            .section-card {
+                border-radius: 22px;
+                padding: 24px;
+            }
+
+            .btn-download {
                 width: 100%;
+            }
+
+            .download-hint {
+                max-width: none;
+            }
+        }
+
+        @media print {
+            body {
+                background: #ffffff;
+            }
+
+            .hero-card,
+            .download-card,
+            .section-card {
+                box-shadow: none;
+            }
+
+            .btn-download {
+                color: #000000;
+                background: #ffffff;
+                border: 1px solid #000000;
+                box-shadow: none;
             }
         }
     </style>
 </head>
 
 <body>
-    <main class="container">
-        <section class="hero">
-            <div class="badge">Excel VSTO Add-in</div>
-
-            <h1>LabAddinExcel</h1>
-
-            <p class="subtitle">
-                Công cụ hỗ trợ lập dự toán trên Excel: tra cứu công việc, chèn định mức,
-                phân tích đơn giá, cập nhật dữ liệu và đồng bộ bộ đơn giá.
-            </p>
-
-            <div class="buttons">
-                <a class="btn btn-secondary" href="./Install_Lab_AddinExcel.bat.zip">
-                    Tải file .bat cài nhanh
-                </a>
-				<a class="btn btn-primary" href="./setup.exe">
-                    Tải và cài đặt Add-in
-                </a>
-                
+    <main class="page">
+        <header class="topbar" aria-label="Thanh tiêu đề">
+            <div class="brand">
+                <div class="brand-mark" aria-hidden="true">XL</div>
+                <div>LabAddinExcel</div>
             </div>
+            <div class="top-note">Trang tải add-in Excel nội bộ</div>
+        </header>
 
-            <div class="warning">
-                Sau khi bấm cài đặt, trình duyệt tải file <b>Install_Lab_AddinExcel.bat.zip</b> về máy.
-                Hãy giải nén và mở file .bat. Chương trình tự chạy và tải phần cài đặt còn lại.
-            </div>
+        <section class="hero" aria-label="Tải và cài đặt LabAddinExcel">
+            <div class="hero-card">
+                <div class="badge"><span class="badge-dot"></span> Excel VSTO Add-in</div>
+                <h1>Công cụ hỗ trợ lập dự toán trực tiếp trên Excel</h1>
+                <p class="lead">
+                    LabAddinExcel hỗ trợ tra cứu công việc, chèn định mức, phân tích đơn giá,
+                    cập nhật dữ liệu và đồng bộ bộ đơn giá ngay trong Microsoft Excel.
+                </p>
 
-            <div class="info-grid">
-                <div class="info-card">
-                    <div class="info-title">Cài đặt nhanh</div>
-                    <div class="info-text">
-                        Dùng file <code>setup.exe</code> để cài add-in vào Excel.
+                <div class="hero-actions">
+                    <a class="btn-download" href="./Install_Lab_AddinExcel.bat.zip" download>
+                        <span aria-hidden="true">⬇</span>
+                        <span>Tải bộ cài đặt</span>
+                    </a>
+                    <div class="download-hint">
+                        Tải file nén, giải nén rồi chạy file <strong>.bat</strong> để cài đặt add-in.
                     </div>
                 </div>
 
-                <div class="info-card">
-                    <div class="info-title">Tự cập nhật</div>
-                    <div class="info-text">
-                        Add-in được publish bằng ClickOnce/VSTO, có thể cập nhật khi có bản mới.
+                <div class="mini-list" aria-label="Điểm nổi bật">
+                    <div class="mini-item">
+                        <div class="mini-title">Cài đặt đơn giản</div>
+                        <div class="mini-text">Người dùng chỉ cần tải file, giải nén và chạy file cài đặt nhanh.</div>
+                    </div>
+                    <div class="mini-item">
+                        <div class="mini-title">Dễ cập nhật</div>
+                        <div class="mini-text">Add-in và dữ liệu có thể được cập nhật khi có phiên bản mới.</div>
+                    </div>
+                    <div class="mini-item">
+                        <div class="mini-title">Dùng trong Excel</div>
+                        <div class="mini-text">Sau khi cài đặt, tab <strong>LAB</strong> sẽ xuất hiện trên Ribbon Excel.</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="download-card" aria-label="Thông tin file cài đặt">
+                <div class="status-box">
+                    <div class="status-title"><span aria-hidden="true">✓</span> Sẵn sàng tải về</div>
+                    <div class="status-text">
+                        File cài đặt được đóng gói dạng <strong>.zip</strong> để tải xuống thuận tiện hơn trên trình duyệt.
                     </div>
                 </div>
 
-                <div class="info-card">
-                    <div class="info-title">Dữ liệu riêng</div>
-                    <div class="info-text">
-                        Dữ liệu định mức, đơn giá được cập nhật riêng bằng chức năng trong add-in.
+                <div class="file-box">
+                    <div class="file-label">Tên file tải về</div>
+                    <div class="file-name">Install_Lab_AddinExcel.bat.zip</div>
+                </div>
+
+                <div class="requirements">
+                    <div class="req-row">
+                        <div class="req-icon">1</div>
+                        <div>Máy tính dùng hệ điều hành Windows.</div>
+                    </div>
+                    <div class="req-row">
+                        <div class="req-icon">2</div>
+                        <div>Đã cài Microsoft Excel/Office phiên bản phù hợp.</div>
+                    </div>
+                    <div class="req-row">
+                        <div class="req-icon">3</div>
+                        <div>Cho phép chạy file cài đặt nội bộ do đơn vị cung cấp.</div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <section class="content-grid">
+            <div class="section-card">
+                <h2>Hướng dẫn cài đặt</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div>
+                            <div class="step-title">Tải bộ cài đặt</div>
+                            <div class="step-text">Bấm nút <strong>Tải bộ cài đặt</strong> ở phía trên để tải file về máy.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <div class="step-title">Giải nén file tải về</div>
+                            <div class="step-text">Nhấp phải vào file <code>Install_Lab_AddinExcel.bat.zip</code> và chọn giải nén.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <div class="step-title">Chạy file cài đặt</div>
+                            <div class="step-text">Mở file <strong>.bat</strong> vừa giải nén và làm theo hướng dẫn trên màn hình.</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div>
+                            <div class="step-title">Mở Excel và kiểm tra</div>
+                            <div class="step-text">Mở Microsoft Excel, kiểm tra tab <strong>LAB</strong> trên Ribbon và cập nhật dữ liệu nếu cần.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-card">
+                <h2>Lưu ý khi cài đặt</h2>
+                <div class="notice">
+                    Nếu Windows hoặc trình duyệt hiển thị cảnh báo bảo mật, hãy kiểm tra đúng file do đơn vị cung cấp rồi chọn cho phép chạy.
+                    Không tải file cài đặt từ nguồn không rõ ràng.
+                </div>
+
+                <div class="support-list">
+                    <div class="support-item">
+                        <div class="support-title">Không thấy tab LAB?</div>
+                        <div class="support-text">Đóng toàn bộ cửa sổ Excel, chạy lại file cài đặt, sau đó mở lại Excel để kiểm tra.</div>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-title">Thiếu dữ liệu?</div>
+                        <div class="support-text">Vào tab <strong>LAB</strong> trong Excel và bấm chức năng <strong>Cập nhật dữ liệu</strong>.</div>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-title">Cài đặt không thành công?</div>
+                        <div class="support-text">Kiểm tra Microsoft Office, .NET Framework và Visual Studio Tools for Office Runtime trên máy.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="steps">
-            <h2>Hướng dẫn cài đặt</h2>
-
-            <ol>
-                <li>Bấm nút <b>Tải file .bat cài nhanh</b>.</li>
-                <li>Giải nén <b>Install_Lab_AddinExcel.bat.zip</b> vừa tải về.</li>
-                <li>Chạy file .bat và làm theo hướng dẫn cài đặt trên màn hình.</li>
-                <li>Mở Microsoft Excel.</li>
-                <li>Kiểm tra tab <b>LAB</b> trên Ribbon Excel.</li>
-                <li>Nếu chưa có dữ liệu, bấm nút <b>Cập nhật dữ liệu</b> trong add-in.</li>
-            </ol>
-
-            <p>
-                Nếu máy báo thiếu thành phần cài đặt, hãy kiểm tra Microsoft Office,
-                .NET Framework và Visual Studio Tools for Office Runtime.
-            </p>
-        </section>
-
-        <footer>
-            © LabAddinExcel - Trang cài đặt nội bộ
+        <footer class="footer">
+            <div>© LabAddinExcel</div>
+            <div>Trang cài đặt nội bộ cho người dùng Excel</div>
         </footer>
     </main>
 </body>
