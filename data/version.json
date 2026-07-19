@@ -1,4 +1,9 @@
 {
+<<<<<<< HEAD
   "version": "1.0.9",
   "url": "https://github.com/khoaspkt/LabAddinExcel-Deploy/releases/download/Data_V109/Data.zip"
+=======
+  "version": "1.0.8",
+  "url": "https://github.com/khoaspkt/LabAddinExcel-Deploy/releases/download/Data_V108/Data.zip"
+>>>>>>> a3be94480a7ccadaa9b55e1bc0dc84510678b2f3
 }
